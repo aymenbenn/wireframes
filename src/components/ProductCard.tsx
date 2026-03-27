@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { ShoppingCart, Plus, Minus } from 'lucide-react';
+import React, { useState } from 'react'
+import { ShoppingCart, Plus, Minus } from 'lucide-react'
 
 export interface ProductCardProps {
-  image?: string; // optional, default will be /A.png
-  title: string;
-  brand: string;
-  inStock: boolean;
-  deliveryTime: string;
-  warranty: string;
-  sku: string;
-  oldPrice?: string;
-  price: string;
+  image: string
+  title: string
+  brand: string
+  inStock: boolean
+  deliveryTime: string
+  warranty: string
+  sku: string
+  oldPrice?: string
+  price: string
 }
 
 export function ProductCard({
-  image = "/A.png", // default image from public folder
+  image,
   title,
   brand,
   inStock,
@@ -22,12 +22,12 @@ export function ProductCard({
   warranty,
   sku,
   oldPrice,
-  price
+  price,
 }: ProductCardProps) {
-  const [quantity, setQuantity] = useState<number>(1);
+  const [quantity, setQuantity] = useState<number>(1)
 
-  const increaseQuantity = () => setQuantity(prev => prev + 1);
-  const decreaseQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
+  const increaseQuantity = () => setQuantity((prev) => prev + 1)
+  const decreaseQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))
 
   return (
     <div className="bg-white rounded-xl border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden group flex flex-col h-full">
@@ -35,11 +35,10 @@ export function ProductCard({
       {/* IMAGE AREA */}
       <div className="relative bg-gray-50 flex items-center justify-center aspect-[4/5] overflow-hidden">
         <img
-          src={image} // will use default /A.png if no prop passed
+          src={image}
           alt={title}
           className="object-contain w-full h-full p-6 group-hover:scale-105 transition duration-500"
         />
-
         {/* STOCK BADGE */}
         <div className="absolute top-3 left-3">
           {inStock ? (
@@ -85,7 +84,7 @@ export function ProductCard({
         {/* QUANTITY + ADD TO CART */}
         <div className="flex flex-col sm:flex-row items-center gap-3 w-full">
 
-          {/* QUANTITY SELECTOR */}
+          {/* QUANTITY SELECTOR (small) */}
           <div className="flex items-center border border-gray-300 rounded overflow-hidden h-8">
             <button
               onClick={decreaseQuantity}
@@ -104,7 +103,7 @@ export function ProductCard({
             </button>
           </div>
 
-          {/* ADD TO CART BUTTON */}
+          {/* ADD TO CART BUTTON (refined rectangle) */}
           <button className="flex-1 h-12 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md flex items-center justify-center gap-2 transition shadow-md whitespace-nowrap">
             <ShoppingCart className="w-4 h-4" />
             <span className="text-sm font-medium">Voeg toe</span>
@@ -114,5 +113,5 @@ export function ProductCard({
 
       </div>
     </div>
-  );
+  )
 }
