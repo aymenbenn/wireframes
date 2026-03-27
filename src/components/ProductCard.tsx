@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ShoppingCart, Plus, Minus } from 'lucide-react';
 
 export interface ProductCardProps {
-  image?: string; // optional, default will be used
+  image?: string; // optional, default will be /A.png
   title: string;
   brand: string;
   inStock: boolean;
@@ -35,10 +35,11 @@ export function ProductCard({
       {/* IMAGE AREA */}
       <div className="relative bg-gray-50 flex items-center justify-center aspect-[4/5] overflow-hidden">
         <img
-          src={image}
+          src={image} // will use default /A.png if no prop passed
           alt={title}
           className="object-contain w-full h-full p-6 group-hover:scale-105 transition duration-500"
         />
+
         {/* STOCK BADGE */}
         <div className="absolute top-3 left-3">
           {inStock ? (
@@ -110,6 +111,7 @@ export function ProductCard({
           </button>
 
         </div>
+
       </div>
     </div>
   );
